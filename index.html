@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodExpress | Pide tu comida favorita</title>
+    <meta name="description" content="Encuentra tu comida favorita y arma tu pedido en FoodExpress.">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">
+            <span class="logo-icon">🍔</span> Food<span>Express</span>
+        </a>
+         <span class="eyebrow">
+            Daniel Alejandro Rodriguez Santiago 3-3-M
+        </span>
+            
+
+        <nav class="nav">
+            <a href="#inicio">Inicio</a>
+            <a href="#categorias">Categorías</a>
+            <a href="#menu">Menú</a>
+        </nav>
+
+        <button class="cart-button" id="open-cart">
+            🛒 Carrito <span id="cart-count">0</span>
+        </button>
+    </header>
+
+    <main>
+        <section class="hero" id="inicio">
+            <div class="hero-content">
+                <span class="eyebrow">TU ANTOJO, A UN CLIC</span>
+                <h1>Tu comida favorita,<br>hasta tu <span>puerta.</span></h1>
+                <p>Descubre sabores increíbles y disfruta tus platillos favoritos sin salir de casa.</p>
+                <a href="#menu" class="primary-button">Explorar menú →</a>
+
+                <div class="hero-info">
+                    <span>⭐ Favoritos de nuestros clientes</span>
+                    <span>🍟 Gran variedad de comida</span>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <img
+                    src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=85"
+                    alt="Hamburguesa con queso y vegetales">
+                <div class="floating-card">
+                    <span>🔥</span>
+                    <div>
+                        <strong>¡Antojo resuelto!</strong>
+                        <small>Algo delicioso te espera</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="categories section" id="categorias">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">ENCUENTRA TU ANTOJO</span>
+                    <h2>¿Qué se te antoja hoy?</h2>
+                </div>
+            </div>
+
+            <div class="category-list">
+                <button class="category active" data-category="Todos">
+                    <span>🍽️</span> Todo
+                </button>
+                <button class="category" data-category="Hamburguesas">
+                    <span>🍔</span> Hamburguesas
+                </button>
+                <button class="category" data-category="Pizza">
+                    <span>🍕</span> Pizza
+                </button>
+                <button class="category" data-category="Tacos">
+                    <span>🌮</span> Tacos
+                </button>
+                <button class="category" data-category="Ensaladas">
+                    <span>🥗</span> Ensaladas
+                </button>
+                <button class="category" data-category="Postres">
+                    <span>🍰</span> Postres
+                </button>
+                <button class="category" data-category="Bebidas">
+                    <span>🥤</span> Bebidas
+                </button>
+            </div>
+        </section>
+
+        <section class="menu section" id="menu">
+            <div class="section-heading menu-heading">
+                <div>
+                    <span class="eyebrow">PREPARADOS PARA TI</span>
+                    <h2>Los favoritos de hoy</h2>
+                    <p>Elige tus platillos y agrégalos a tu pedido.</p>
+                </div>
+
+                <label class="search-box">
+                    <span>⌕</span>
+                    <input id="search" type="search"
+                        placeholder="Buscar comida..." aria-label="Buscar comida">
+                </label>
+            </div>
+
+            <div class="product-grid" id="product-grid">
+                <!-- Los productos se generan con JavaScript -->
+            </div>
+
+            <p id="empty-message" class="empty-message" hidden>
+                No encontramos productos. Prueba otra búsqueda.
+            </p>
+        </section>
+
+        <section class="promo">
+            <div>
+                <span class="eyebrow">TU PRÓXIMO ANTOJO</span>
+                <h2>Hoy es un buen día para comer rico.</h2>
+                <p>Explora el menú y encuentra algo que te encante.</p>
+            </div>
+            <a href="#menu" class="light-button">Ver menú →</a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <a href="#inicio" class="logo">
+            🍔 Food<span>Express</span>
+        </a>
+        <p>Hecho para disfrutar cada bocado. © 2026 FoodExpress.</p>
+        <small>Proyecto académico · Pedidos de demostración</small>
+    </footer>
+
+    <!-- Fondo del carrito -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Panel lateral del carrito -->
+    <aside class="cart-panel" id="cart-panel"
+        role="dialog" aria-modal="true" aria-labelledby="cart-title">
+        <div class="cart-header">
+            <div>
+                <span class="eyebrow">TU PEDIDO</span>
+                <h2 id="cart-title">Mi carrito</h2>
+            </div>
+            <button class="close-button" id="close-cart"
+                aria-label="Cerrar carrito">✕</button>
+        </div>
+
+        <div id="cart-items" class="cart-items"></div>
+
+        <div id="cart-bottom" class="cart-bottom">
+            <div class="total-row">
+                <span>Total</span>
+                <strong id="cart-total">$0.00</strong>
+            </div>
+            <button class="primary-button full-button" id="checkout-button">
+                Continuar con el pedido →
+            </button>
+            <p class="cart-note">Pedido de demostración. No se realiza ningún cobro.</p>
+        </div>
+    </aside>
+
+    <!-- Formulario para confirmar el pedido -->
+    <div class="modal-backdrop" id="checkout-modal">
+        <form class="checkout-form" id="checkout-form">
+            <button type="button" class="close-button modal-close"
+                id="close-checkout" aria-label="Cerrar formulario">✕</button>
+
+            <span class="eyebrow">CASI LISTO</span>
+            <h2>¿Dónde entregamos?</h2>
+            <p>Completa tus datos para registrar tu pedido de prueba.</p>
+
+            <label for="customer-name">Nombre completo</label>
+            <input id="customer-name" name="name" type="text"
+                placeholder="Tu nombre" required maxlength="80">
+
+            <label for="customer-address">Dirección de entrega</label>
+            <textarea id="customer-address" name="address"
+                placeholder="Calle, número, colonia y alcaldía" required
+                maxlength="300" rows="3"></textarea>
+
+            <label for="payment-method">Método de pago de prueba</label>
+            <select id="payment-method" name="payment" required>
+                <option value="Efectivo">Efectivo al recibir</option>
+                <option value="Tarjeta (simulación)">Tarjeta (simulación)</option>
+            </select>
+
+            <div class="total-row form-total">
+                <span>Total de tu pedido</span>
+                <strong id="checkout-total">$0.00</strong>
+            </div>
+
+            <button class="primary-button full-button" type="submit">
+                Confirmar pedido de prueba
+            </button>
+            <small>Este formulario no procesa pagos reales.</small>
+        </form>
+    </div>
+
+    <!-- Mensaje de confirmación -->
+    <div class="modal-backdrop" id="success-modal">
+        <div class="success-card" role="dialog" aria-modal="true">
+            <div class="success-icon">✓</div>
+            <h2>¡Pedido registrado!</h2>
+            <p id="success-message"></p>
+            <p id="order-details" class="order-details"></p>
+            <button class="primary-button full-button" id="finish-order">
+                Seguir explorando
+            </button>
+        </div>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
